@@ -1,8 +1,8 @@
 {
-  "name": "hls-converter",
-  "productName": "hls-converter",
+  "name": "fmh-converter",
+  "productName": "FMH-Converter",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "This app will convert mp4 video to hls.",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -24,7 +24,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "hls_converter"
+            "name": "fmh-converter"
           }
         },
         {

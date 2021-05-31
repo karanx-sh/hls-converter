@@ -102,7 +102,7 @@ code {
   position: relative;
   width: 50%;
   flex-grow: 8;
-  margin-top: 106px;
+  margin-top: 70px;
   margin-bottom: 0;
   margin-left: 212px;
   transition: 0.6s;
@@ -132,7 +132,7 @@ code {
   margin-top: 20px;
 }
 .layout-spacing {
-  padding-bottom: 40px;
+  padding-bottom: 10px;
 }
 .layout-px-spacing {
   padding: 0 20px 0 18px !important;
@@ -1160,7 +1160,7 @@ code {
     */
 
   .main-container.sidebar-closed #content {
-    margin-left: 0;
+    margin-left: 40px;
   }
   /*
         =============

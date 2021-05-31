@@ -1,4 +1,6 @@
 const { app, BrowserWindow } = require("electron");
+const electron = require("electron");
+
 const path = require("path");
 
 if (require("electron-squirrel-startup")) {
@@ -6,16 +8,25 @@ if (require("electron-squirrel-startup")) {
 }
 
 const createWindow = () => {
+  const screenElectron = electron.screen;
+  const display = screenElectron.getPrimaryDisplay();
+  const dimensions = display.workAreaSize;
+
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: parseInt(dimensions.width * 0.6),
+    height: parseInt(dimensions.height * 0.9),
+    minWidth: parseInt(dimensions.width * 0.6),
+    minHeight: parseInt(dimensions.height * 1),
+    maxWidth: parseInt(dimensions.width * 0.6),
+    maxHeight: parseInt(dimensions.height * 1),
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
       contextIsolation: false,
+      devTools: false,
     },
   });
-
+  mainWindow.setMenu(null);
   mainWindow.loadFile(path.join(__dirname, "index2.html"));
 
   mainWindow.webContents.openDevTools();
