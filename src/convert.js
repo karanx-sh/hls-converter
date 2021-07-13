@@ -35,11 +35,16 @@ function checkProgress() {
     progBar.style.width = "60%";
     progBar.innerHTML = "60%";
     prog++;
+  } else if (prog == 2) {
+    progBar.style.width = "80%";
+    progBar.innerHTML = "680%";
+    prog++;
   }
+
 }
 function callback() {
   // do something when encoding is done
-  fs.writeFile(`${saveFilePath}/${fileprefix}.m3u8`, `#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-STREAM-INF:BANDWIDTH=800000,RESOLUTION=640x360\n${fileprefix}360.m3u8\n#EXT-X-STREAM-INF:BANDWIDTH=1400000,RESOLUTION=842x480\n${fileprefix}480.m3u8\n#EXT-X-STREAM-INF:BANDWIDTH=2800000,RESOLUTION=1280x720\n${fileprefix}720.m3u8`, function (err, data) {
+  fs.writeFile(`${saveFilePath}/${fileprefix}.m3u8`, `#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-STREAM-INF:BANDWIDTH=800000,RESOLUTION=640x360\n${fileprefix}360.m3u8\n#EXT-X-STREAM-INF:BANDWIDTH=1400000,RESOLUTION=842x480\n${fileprefix}480.m3u8\n#EXT-X-STREAM-INF:BANDWIDTH=2800000,RESOLUTION=1280x720\n${fileprefix}720.m3u8\n#EXT-X-STREAM-INF:BANDWIDTH=2800000,RESOLUTION=1920x1080\n${fileprefix}1080.m3u8`, function (err, data) {
     if (err) {
       return dialog.showErrorBox("Error", "Something Went Wrong!!");
     } else {
@@ -92,7 +97,7 @@ async function convert() {
         "-maxrate 856k",
         "-bufsize 1200k",
         "-hls_time 10",
-        `-hls_segment_filename ${saveFilePath}/${uniqid()}360%03d.ts`,
+        `-hls_segment_filename ${saveFilePath}/360%03d.ts`,
         "-hls_playlist_type vod",
         "-f hls",
       ])
@@ -117,7 +122,7 @@ async function convert() {
         "-maxrate 1498k",
         "-bufsize 2100k",
         "-hls_time 10",
-        `-hls_segment_filename ${saveFilePath}/${uniqid()}480p%03d.ts`,
+        `-hls_segment_filename ${saveFilePath}/480p%03d.ts`,
         "-hls_playlist_type vod",
         "-f hls",
       ])
@@ -142,11 +147,36 @@ async function convert() {
         "-maxrate 2996k",
         "-bufsize 4200k",
         "-hls_time 10",
-        `-hls_segment_filename ${saveFilePath}/${uniqid()}720p%03d.ts`,
+        `-hls_segment_filename ${saveFilePath}/720p%03d.ts`,
         "-hls_playlist_type vod",
         "-f hls",
       ])
       .output(`${saveFilePath}/${fileprefix}720.m3u8`)
+      .on("end", checkProgress)
+      .run();
+
+      ffmpeg(filename)
+      .addOptions([
+        //720
+        "-profile:v main",
+        "-vf scale=w=1920:h=1080:force_original_aspect_ratio=decrease",
+        "-c:a aac",
+        "-ar 48000",
+        "-b:a 128k",
+        "-c:v h264",
+        "-crf 20",
+        "-g 48",
+        "-keyint_min 48",
+        "-sc_threshold 0",
+        "-b:v 2800k",
+        "-maxrate 2996k",
+        "-bufsize 4200k",
+        "-hls_time 10",
+        `-hls_segment_filename ${saveFilePath}/1080p%03d.ts`,
+        "-hls_playlist_type vod",
+        "-f hls",
+      ])
+      .output(`${saveFilePath}/${fileprefix}1080.m3u8`)
       .on("end", callback)
       .run();
   } catch (error) {
