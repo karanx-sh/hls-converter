@@ -26,19 +26,13 @@ It is a windows and linux based application made in electron-js, it main task is
 git clone https://github.com/kphacko/hls-converter.git
 ```
 
-2. Change the working directory
+2. Install dependencies
 
 ```bash
 npm install
 ```
 
-3. Install dependencies
-
-```bash
-npm install
-```
-
-4. Create `.env` file in root and add your variables
+3. Run the app
 
 ```bash
 npm run make
