@@ -18,3 +18,39 @@ It is a windows and linux based application made in electron-js, it main task is
 - Progress Bar of conversion.
 - Cross platform (Windows & Linux)
 
+## 🛠️ Installation Steps
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/kphacko/hls-converter.git
+```
+
+2. Change the working directory
+
+```bash
+npm install
+```
+
+3. Install dependencies
+
+```bash
+npm install
+```
+
+4. Create `.env` file in root and add your variables
+
+```bash
+npm run make
+```
+
+
+You are all set! Open Out folder to install the app.
+
+## 👨‍💻 Author
+
+### 👤 Karan Patil
+
+- Twitter: [@K9720p](https://twitter.com/K9720p)
+- Github: [@kphacko](https://github.com/kphacko)
+
