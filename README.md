@@ -46,5 +46,5 @@ You are all set! Open Out folder to install the app.
 ### 👤 Karan Patil
 
 - Twitter: [@K9720p](https://twitter.com/K9720p)
-- Github: [@kphacko](https://github.com/kphacko)
+- Github: [@karanx-sh](https://github.com/karanx-sh)
 
