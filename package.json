@@ -11,10 +11,18 @@
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
-  "keywords": [],
+  "keywords": [
+    "hls",
+    "mp4",
+    "converter",
+    "npm",
+    "nodejs",
+    "ffmpeg",
+    "to"
+  ],
   "author": {
-    "name": "kphacko",
-    "email": "25796369+kphacko@users.noreply.github.com"
+    "name": "karan patil",
+    "email": "karan2000patil@gmail.com"
   },
   "license": "MIT",
   "config": {
